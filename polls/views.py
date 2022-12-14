@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from .models import Poll, Question, Choice, Vote
+from .models import Poll, Question, Choice, Vote, PollUser
 from .serializers import (
     PollListSerializer,
     PollDetailSerializer,
@@ -36,4 +36,6 @@ class VoteViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         if self.request.user.is_authenticated:
             return serializer.save(user=self.request.user)
-        return super().perform_create(serializer)
+        user = PollUser.objects.create()
+        return serializer.save(user=user)
+

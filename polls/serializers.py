@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Poll, Question, Choice, Answer, Vote
+from .models import Poll, Question, Choice, Answer, Vote, PollUser
 from .fields import ObjectIDField
 
 
@@ -43,7 +43,7 @@ class QuestionDetailSerializer(QuestionListSerializer):
 
 
 class PollListSerializer(serializers.ModelSerializer):
-    questions = QuestionListSerializer(many=True, write_only=True)
+    questions = QuestionListSerializer(many=True, write_only=True, required=False)
 
     class Meta:
         model = Poll

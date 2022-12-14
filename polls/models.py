@@ -7,7 +7,7 @@ from django.utils import timezone
 
 
 class PollUser(AbstractUser):
-    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
 
 
 class Poll(models.Model):
